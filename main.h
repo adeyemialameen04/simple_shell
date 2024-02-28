@@ -15,6 +15,17 @@
 extern char **environ;
 
 /*STRUCTS*/
+/**
+ * struct data - The data struct.
+ * @argc: The args count.
+ * @argv: The args array.
+ * @cmd: The command gotten from getline.
+ * @cmds: Each commands splitten by;.
+ * @cmds_count: The count of each commands.
+ * @exit_status: The status of each command.
+ * @environ: The environment variables.
+ * @prompt: My shell prompt.
+ */
 typedef struct data
 {
 	int argc;
@@ -24,10 +35,15 @@ typedef struct data
 	int cmds_count;
 	int exit_status;
 	char **environ;
-	int cmds_alloc;
 	char *prompt;
 } data_t;
 
+/**
+ * struct builtin_struct - Struct builtin.
+ *
+ * @builtin_cmd: The command.
+ * @fn: The function associated
+ */
 typedef struct builtin_struct
 {
 	char *builtin_cmd;
@@ -68,8 +84,8 @@ void _print_not_found(data_t *data);
 void _print_exit_err(data_t *data);
 
 /*CUSTOM FUNCTIONS*/
-ssize_t _read_line(char **lineptr, size_t *n, FILE *stream); /*getline*/
-char *_div_str(char *str, const char *delim);				 /*strtok*/
+ssize_t _read_line(char **lineptr, size_t *n, FILE *stream);
+char *_div_str(char *str, const char *delim);
 
 /*PATH*/
 char *_get_path();

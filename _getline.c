@@ -47,14 +47,14 @@ ssize_t read_from_stream(int fd, char *buffer, size_t position)
 	return (bytes_read);
 }
 
-ssize_t _read_line(char **lineptr, size_t *n, FILE *stream);
 /**
- * _read_line - Custom getline function.
+ *_read_line - Custom getline function.
  * @lineptr: stores the adress of the buffer.
  * @n: size.
  * @stream: Where its reading from.
  * Return: Number of chars read on sucess.
  */
+ssize_t _read_line(char **lineptr, size_t *n, FILE *stream);
 ssize_t _read_line(char **lineptr, size_t *n, FILE *stream)
 {
 	char *buffer = *lineptr;
