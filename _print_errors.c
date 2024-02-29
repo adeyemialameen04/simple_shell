@@ -31,3 +31,14 @@ void _print_exit_err(data_t *data)
 	_print(data->argv[1], STDERR_FILENO);
 	_print("\n", STDERR_FILENO);
 }
+
+void _print_file_not_found_err(char *argv[])
+{
+	char *err_msg = "./hsh: 0: ";
+	char *cant_open = "Can't open ";
+
+	_print(err_msg, STDERR_FILENO);
+	_print(cant_open, STDERR_FILENO);
+	_print(argv[1], STDERR_FILENO);
+	_print("\n", STDERR_FILENO);
+}

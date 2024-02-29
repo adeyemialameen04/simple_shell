@@ -50,7 +50,7 @@ typedef struct builtin_struct
 	void (*fn)(data_t *data);
 } builtin_t;
 
-int _shell(void);
+int _shell(int argc, char *argv[]);
 
 /*SHELL HELPER FUNCTIONS*/
 void sigint_handler(int signo);
@@ -59,6 +59,8 @@ void execute_cmd(data_t *data);
 void _clean(data_t *data);
 void shell_loop(data_t *data);
 data_t initialize_data_struct(void);
+
+int handle_file(char **argv, data_t *data);
 
 /*CORE FUNCTIONS*/
 char *tokenize_command(char *cmd, const char *delim);
@@ -82,6 +84,7 @@ void _print(char *printval, int fd);
 /*PRINT ERRS*/
 void _print_not_found(data_t *data);
 void _print_exit_err(data_t *data);
+void _print_file_not_found_err(char *argv[]);
 
 /*CUSTOM FUNCTIONS*/
 ssize_t _read_line(char **lineptr, size_t *n, FILE *stream);
