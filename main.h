@@ -60,23 +60,16 @@ void _clean(data_t *data);
 void shell_loop(data_t *data);
 data_t initialize_data_struct(void);
 
-int handle_file(char **argv, data_t *data);
-
 /*CORE FUNCTIONS*/
 char *tokenize_command(char *cmd, const char *delim);
 char *dup_cmd_str(char *cmd);
 int _tokenize_command(data_t *data, char *delim);
 int _exec_command(data_t *data);
-
-void _free_cmd(data_t *data);
-void _free_argv(data_t *data);
-void _free_cmds(data_t *data);
-
 void _split_command(data_t *data, char *delim);
 
-/*INT HELPER FUNCTIONS*/
-int _isdigit(int c);
-int _is_num(char *str);
+/* FREE MEMORY */
+void _free_argv(data_t *data);
+void _free_cmds(data_t *data);
 
 /*PRINT*/
 void _print(char *printval, int fd);
@@ -90,6 +83,8 @@ void _print_file_not_found_err(char *argv[]);
 ssize_t _read_line(char **lineptr, size_t *n, FILE *stream);
 char *_div_str(char *str, const char *delim);
 
+/**/
+int _handle_file(char **argv, data_t *data);
 void _handle_variables(data_t *data);
 
 /*PATH*/
@@ -109,5 +104,9 @@ int _strcmp(char *s1, char *s2);
 int _strlen(char *s);
 char *_strdup(char *str);
 char *_strchr(char *s, char c);
+
+/*INT HELPER FUNCTIONS*/
+int _isdigit(int c);
+int _is_num(char *str);
 
 #endif /* #ifndef _MAIN_H_ */

@@ -2,6 +2,8 @@
 
 /**
  * _shell - The main shell function.
+ * @argc: Arguments count.
+ * @argv: Argument variables(vectors).
  * Return: The exit status off the last command.
  */
 int _shell(int argc, char *argv[])
@@ -10,7 +12,7 @@ int _shell(int argc, char *argv[])
 
 	if (argc > 1)
 
-		handle_file(argv, &data);
+		_handle_file(argv, &data);
 	else
 		shell_loop(&data);
 

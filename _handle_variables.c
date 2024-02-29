@@ -20,18 +20,18 @@ void _handle_variables(data_t *data)
 			if (strcmp(var_name, "?") == 0)
 			{
 				char exit_status_str[10];
+
 				sprintf(exit_status_str, "%d", data->exit_status);
 				new_value = strdup(exit_status_str);
 			}
 			else if (strcmp(var_name, "") == 0)
 			{
-				/* Treat standalone $ as a literal $ */
 				new_value = strdup("$");
 			}
 			else if (strcmp(var_name, "$") == 0)
 			{
-				/* Convert PID to string and replace the token */
 				char pid_str[10];
+
 				sprintf(pid_str, "%d", getpid());
 				new_value = strdup(pid_str);
 			}

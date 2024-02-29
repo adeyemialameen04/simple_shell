@@ -1,6 +1,12 @@
 #include "main.h"
 
-int handle_file(char **argv, data_t *data)
+/**
+ * _handle_file - Function to handle file being passed as argument.
+ * @argv: Argument variables(vectors).
+ * @data: The data struct.
+ * Return: 1 on failure and 0 on success.
+ */
+int _handle_file(char **argv, data_t *data)
 {
 	FILE *fd;
 	char *lineptr = NULL;

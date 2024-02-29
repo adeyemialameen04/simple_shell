@@ -32,6 +32,12 @@ void _print_exit_err(data_t *data)
 	_print("\n", STDERR_FILENO);
 }
 
+/**
+ * _print_file_not_found_err - Print error when a file passed
+ *								as argv is not found.
+ * @argv: Argument variables(vectors).
+ * Return:None.
+ */
 void _print_file_not_found_err(char *argv[])
 {
 	char *err_msg = "./hsh: 0: ";
