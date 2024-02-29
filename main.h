@@ -87,6 +87,8 @@ void _print_exit_err(data_t *data);
 ssize_t _read_line(char **lineptr, size_t *n, FILE *stream);
 char *_div_str(char *str, const char *delim);
 
+void _handle_variables(data_t *data);
+
 /*PATH*/
 char *_get_path();
 char *_find_command(char *cmd, char *ph);

@@ -42,6 +42,8 @@ int _tokenize_command(data_t *data, char *delim)
 
 	free(cmd_cpy);
 
+	_handle_variables(data);
+
 	return (0);
 }
 
