@@ -80,8 +80,8 @@ void _print_exit_err(data_t *data);
 void _print_file_not_found_err(char *argv[]);
 
 /*CUSTOM FUNCTIONS*/
-ssize_t _read_line(char **lineptr, size_t *n, FILE *stream);
 char *_div_str(char *str, const char *delim);
+ssize_t _read_line(char **lineptr, size_t *n, FILE *stream);
 
 /**/
 int _handle_file(char **argv, data_t *data);
