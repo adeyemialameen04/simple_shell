@@ -69,7 +69,7 @@ void handle_read_and_tok(data_t *data)
 	_free_argv(data);
 	_free_cmds(data);
 
-	read = _read_line(&data->cmd, &n, stdin);
+	read = getline(&data->cmd, &n, stdin);
 	if (read == 0 || read < 0)
 	{
 		free(data->cmd);

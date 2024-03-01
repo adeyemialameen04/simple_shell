@@ -50,24 +50,27 @@ typedef struct builtin_struct
 	void (*fn)(data_t *data);
 } builtin_t;
 
+/*The main baba*/
 int _shell(int argc, char *argv[]);
+/*The main baba*/
 
 /*SHELL HELPER FUNCTIONS*/
 void sigint_handler(int signo);
 void handle_read_and_tok(data_t *data);
 void execute_cmd(data_t *data);
-void _clean(data_t *data);
 void shell_loop(data_t *data);
 data_t initialize_data_struct(void);
 
 /*CORE FUNCTIONS*/
-char *tokenize_command(char *cmd, const char *delim);
-char *dup_cmd_str(char *cmd);
-int _tokenize_command(data_t *data, char *delim);
 int _exec_command(data_t *data);
 void _split_command(data_t *data, char *delim);
+int _tokenize_command(data_t *data, char *delim);
+/*TOKENIZING*/
+char *tokenize_command(char *cmd, const char *delim);
+char *dup_cmd_str(char *cmd);
 
 /* FREE MEMORY */
+void _clean(data_t *data);
 void _free_argv(data_t *data);
 void _free_cmds(data_t *data);
 
@@ -81,7 +84,6 @@ void _print_file_not_found_err(char *argv[]);
 
 /*CUSTOM FUNCTIONS*/
 char *_div_str(char *str, const char *delim);
-ssize_t _read_line(char **lineptr, size_t *n, FILE *stream);
 
 /**/
 int _handle_file(char **argv, data_t *data);
