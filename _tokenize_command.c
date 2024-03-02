@@ -14,8 +14,14 @@ int _tokenize_command(data_t *data, char *delim)
 {
 	char *cmd_cpy;
 	char *token;
+	char *comment;
 
 	data->cmd[strcspn(data->cmd, "\n")] = '\0';
+
+	comment = strchr(data->cmd, '#');
+	if (comment)
+		*comment = '\0';
+
 	cmd_cpy = dup_cmd_str(data->cmd);
 	if (cmd_cpy == NULL)
 	{

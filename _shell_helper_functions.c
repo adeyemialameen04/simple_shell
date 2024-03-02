@@ -1,7 +1,5 @@
 #include "main.h"
 
-void _exec_mul_cmds(data_t *data);
-
 /**
  * initialize_data_struct - Initialize data struct.
  * Return: the data_t struct.
