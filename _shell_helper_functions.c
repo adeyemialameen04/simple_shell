@@ -79,6 +79,9 @@ void handle_read_and_tok(data_t *data)
 		exit(data->exit_status);
 	}
 
+	if (read == 1 && data->cmd[0] == '\n')
+		return;
+
 	_split_command(data, ";");
 	free(data->cmd);
 	data->cmd = NULL;

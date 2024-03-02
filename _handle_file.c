@@ -22,13 +22,17 @@ int _handle_file(char **argv, data_t *data)
 
 	while (getline(&lineptr, &n, fd) != -1)
 	{
-		data->cmd = lineptr;
+		if (lineptr[0] != '\n')
+		{
 
-		_tokenize_command(data, " \n");
-		execute_cmd(data);
+			data->cmd = lineptr;
 
-		_free_cmds(data);
-		_free_argv(data);
+			_tokenize_command(data, " \n");
+			execute_cmd(data);
+
+			_free_cmds(data);
+			_free_argv(data);
+		}
 	}
 	free(lineptr);
 	fclose(fd);
