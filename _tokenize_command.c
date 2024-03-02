@@ -19,8 +19,10 @@ int _tokenize_command(data_t *data, char *delim)
 	data->cmd[strcspn(data->cmd, "\n")] = '\0';
 
 	comment = strchr(data->cmd, '#');
-	if (comment)
+	if (comment && (comment == data->cmd || isspace(comment[-1])))
+	{
 		*comment = '\0';
+	}
 
 	cmd_cpy = dup_cmd_str(data->cmd);
 	if (cmd_cpy == NULL)
