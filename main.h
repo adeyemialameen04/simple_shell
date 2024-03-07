@@ -122,4 +122,7 @@ Alias *find_alias(data_t *data, const char *name);
 int _isdigit(int c);
 int _is_num(char *str);
 
+void handle_alias_definitions(data_t *data);
+void substitute_aliases(data_t *data);
+
 #endif /* #ifndef _MAIN_H_ */

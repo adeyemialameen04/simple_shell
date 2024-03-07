@@ -91,22 +91,18 @@ void handle_read_and_tok(data_t *data)
 }
 
 /**
- * execute_cmd - Function to determine if cmd is a builtin or not
- *					execute the builtin if it is a builtin
- *						or the _exec_command if not.
+ * execute_cmd - Executes the shell command.
  * @data: The data struct.
- * Return: None.
  */
 void execute_cmd(data_t *data)
 {
-	void (*builting_fn)(data_t *data);
+	void (*builtin_fn)(data_t *data);
 	Alias *alias;
 
 	if (data->argv[0] == NULL)
 		return;
 
-	if (data->argv != NULL && data->argv[0] != NULL &&
-		strcmp(data->argv[0], "alias") == 0)
+	if (strcmp(data->argv[0], "alias") == 0)
 	{
 		handle_alias_command(data);
 		return;
@@ -116,25 +112,20 @@ void execute_cmd(data_t *data)
 
 	if (alias != NULL)
 	{
-		_free_argv(data);
-		_free_cmds(data);
-
-		data->cmd = strdup(alias->value);
-		_tokenize_command(data, " \n");
+		substitute_aliases(data);
 		_exec_command(data);
-
-		alias = find_alias(data, data->cmd);
-		free(data->cmd);
 	}
 	else
 	{
-		builting_fn = _get_builtin_fn(data->argv[0]);
+		builtin_fn = _get_builtin_fn(data->argv[0]);
 
-		if (builting_fn != NULL)
+		if (builtin_fn != NULL)
 		{
-			builting_fn(data);
+			builtin_fn(data);
 		}
 		else
+		{
 			_exec_command(data);
+		}
 	}
 }

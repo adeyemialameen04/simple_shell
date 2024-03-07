@@ -36,18 +36,25 @@ void add_alias(data_t *data, const char *name, const char *value)
 }
 
 /**
- * print_aliases - Prints all aliases in the alias list.
+ * print_aliases_recursive - Prints all aliases in the alias list.
+ * @current: The current alias.
+ */
+void print_aliases_recursive(Alias *current)
+{
+	if (current != NULL)
+	{
+		print_aliases_recursive(current->next);
+		printf("%s='%s'\n", current->name, current->value);
+	}
+}
+
+/**
+ * print_aliases_reverse - Prints all aliases in the alias list.
  * @data: The data struct.
  */
-void print_aliases(data_t *data)
+void print_aliases_reverse(data_t *data)
 {
-	Alias *current = data->alias_list;
-
-	while (current != NULL)
-	{
-		printf("%s='%s'\n", current->name, current->value);
-		current = current->next;
-	}
+	print_aliases_recursive(data->alias_list);
 }
 
 /**
@@ -85,7 +92,7 @@ void handle_alias_command(data_t *data)
 	/* Check if any arguments are provided */
 	if (data->argc == 1)
 	{
-		print_aliases(data);
+		print_aliases_reverse(data);
 		return;
 	}
 
@@ -135,6 +142,34 @@ void handle_alias_command(data_t *data)
 			{
 				/* Handle non-existent alias */
 				printf("alias: %s: not found\n", arg);
+			}
+		}
+	}
+}
+
+/**
+ * substitute_aliases - Substitutes aliases in the command.
+ * @data: The data struct.
+ */
+void substitute_aliases(data_t *data)
+{
+	int i;
+
+	if (data->argv == NULL)
+		return;
+
+	for (i = 0; data->argv[i] != NULL; i++)
+	{
+		Alias *alias = find_alias(data, data->argv[i]);
+
+		if (alias != NULL)
+		{
+			if (data->argv[i] != NULL)
+			{
+				free(data->argv[i]);
+				data->argv[i] = strdup(alias->value);
+
+				substitute_aliases(data);
 			}
 		}
 	}
