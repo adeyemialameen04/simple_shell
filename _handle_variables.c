@@ -21,7 +21,7 @@ void _handle_variables(data_t *data)
 			{
 				char exit_status_str[10];
 
-				sprintf(exit_status_str, "%d", data->exit_status);
+				snprintf(exit_status_str, sizeof(exit_status_str), "%d", data->exit_status);
 				new_value = strdup(exit_status_str);
 			}
 			else if (strcmp(var_name, "") == 0)
