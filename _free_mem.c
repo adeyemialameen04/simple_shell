@@ -29,8 +29,9 @@ void _free_argv(data_t *data)
 void _clean(data_t *data)
 {
 	_free_argv(data);
+
 	_free_cmds(data);
-	_free_cmds(data);
+	__free_alias(data);
 }
 
 /**
@@ -53,4 +54,32 @@ void _free_cmds(data_t *data)
 		free(data->cmds);
 		data->cmds = NULL;
 	}
+}
+
+/**
+ * __free_alias - Free the elements inside argv and set to NULL.
+ * @data: The data struct.
+ * Return: none.
+ */
+void __free_alias(data_t *data)
+{
+	Alias *current = data->alias_list;
+	Alias *next;
+
+	while (current != NULL)
+	{
+		next = current->next;
+
+		free(current->name);
+		current->name = NULL;
+
+		free(current->value);
+		current->value = NULL;
+
+		free(current);
+
+		current = next;
+	}
+
+	data->alias_list = NULL;
 }

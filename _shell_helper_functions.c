@@ -14,6 +14,7 @@ data_t initialize_data_struct(void)
 	data.cmds = NULL;
 	data.exit_status = 0;
 	data.environ = environ;
+	data.alias_list = NULL;
 
 	if (signal(SIGINT, sigint_handler) == SIG_ERR)
 	{
@@ -51,6 +52,7 @@ void shell_loop(data_t *data)
 		}
 		_free_cmds(data);
 	}
+	__free_alias(data);
 }
 
 /**
@@ -74,6 +76,7 @@ void handle_read_and_tok(data_t *data)
 		data->cmd = NULL;
 		_free_argv(data);
 		_free_cmds(data);
+		__free_alias(data);
 		if (isatty(STDIN_FILENO))
 			_print("\n", STDOUT_FILENO);
 		exit(data->exit_status);
@@ -97,16 +100,41 @@ void handle_read_and_tok(data_t *data)
 void execute_cmd(data_t *data)
 {
 	void (*builting_fn)(data_t *data);
+	Alias *alias;
 
 	if (data->argv[0] == NULL)
 		return;
 
-	builting_fn = _get_builtin_fn(data->argv[0]);
-
-	if (builting_fn != NULL)
+	if (data->argv != NULL && data->argv[0] != NULL &&
+		strcmp(data->argv[0], "alias") == 0)
 	{
-		builting_fn(data);
+		handle_alias_command(data);
+		return;
+	}
+
+	alias = find_alias(data, data->cmd);
+
+	if (alias != NULL)
+	{
+		_free_argv(data);
+		_free_cmds(data);
+
+		data->cmd = strdup(alias->value);
+		_tokenize_command(data, " \n");
+		_exec_command(data);
+
+		alias = find_alias(data, data->cmd);
+		free(data->cmd);
 	}
 	else
-		_exec_command(data);
+	{
+		builting_fn = _get_builtin_fn(data->argv[0]);
+
+		if (builting_fn != NULL)
+		{
+			builting_fn(data);
+		}
+		else
+			_exec_command(data);
+	}
 }

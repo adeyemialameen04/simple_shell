@@ -1,8 +1,5 @@
 #include "main.h"
 
-#define MOVE_LEFT "\033[D"
-#define MOVE_RIGHT "\033[C"
-
 /**
  * main - Entry point to my shell program.
  * @argc: Arguments count.

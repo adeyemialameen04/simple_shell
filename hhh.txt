@@ -1,0 +1,2 @@
+echo "jdsbvfg
+echo \$?" | ./hsh

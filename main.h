@@ -14,6 +14,13 @@
 
 extern char **environ;
 
+typedef struct Alias
+{
+	char *name;
+	char *value;
+	struct Alias *next;
+} Alias;
+
 /*STRUCTS*/
 /**
  * struct data - The data struct.
@@ -36,6 +43,7 @@ typedef struct data
 	int exit_status;
 	char **environ;
 	char *prompt;
+	Alias *alias_list;
 } data_t;
 
 /**
@@ -88,7 +96,7 @@ char *_div_str(char *str, const char *delim);
 /**/
 int _handle_file(char **argv, data_t *data);
 void _handle_variables(data_t *data);
-
+void __free_alias(data_t *data);
 /*PATH*/
 char *_get_path();
 char *_find_command(char *cmd, char *ph);
@@ -106,6 +114,9 @@ int _strcmp(char *s1, char *s2);
 int _strlen(char *s);
 char *_strdup(char *str);
 char *_strchr(char *s, char c);
+
+void handle_alias_command(data_t *data);
+Alias *find_alias(data_t *data, const char *name);
 
 /*INT HELPER FUNCTIONS*/
 int _isdigit(int c);
