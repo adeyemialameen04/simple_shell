@@ -90,7 +90,7 @@ static char *_get_cmd_path(data_t *data, char *path)
  */
 static int _start_child_process(data_t *data, char *cmd_ph)
 {
-	int res = execve(cmd_ph, data->argv, NULL);
+	int res = execve(cmd_ph, data->argv, data->environ);
 
 	if (res == -1)
 	{
