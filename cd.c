@@ -2,6 +2,12 @@
 #include <string.h>
 #include <libgen.h>
 
+/**
+ * _builtin_cd - Builtin cd.
+ * @data: Data struct.
+ * Return: None.
+ */
+void _builtin_cd(data_t *data);
 void _builtin_cd(data_t *data)
 {
 	char *dir = data->argv[1];
