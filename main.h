@@ -11,9 +11,17 @@
 #include <limits.h>
 #include <signal.h>
 #include <ctype.h>
+#include <termios.h>
+#include <libgen.h>
 
 extern char **environ;
 
+/**
+ * struct Alias - The alias struct.
+ * @name: alias nae.
+ * @value: alias val.
+ * @next: next value in the linked list.
+ */
 typedef struct Alias
 {
 	char *name;
@@ -31,7 +39,9 @@ typedef struct Alias
  * @cmds_count: The count of each commands.
  * @exit_status: The status of each command.
  * @environ: The environment variables.
+ * @prev_dir: To store the prev dir.
  * @prompt: My shell prompt.
+ * @alias_list: The alias list.
  */
 typedef struct data
 {
@@ -43,7 +53,6 @@ typedef struct data
 	int exit_status;
 	char **environ;
 	char *prompt;
-	char *prev_dir;
 	Alias *alias_list;
 } data_t;
 

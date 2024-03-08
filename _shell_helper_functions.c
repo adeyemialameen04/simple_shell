@@ -1,4 +1,5 @@
 #include "main.h"
+#include <limits.h>
 
 /**
  * initialize_data_struct - Initialize data struct.
