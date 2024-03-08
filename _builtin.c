@@ -1,7 +1,5 @@
 #include "main.h"
 
-#include "main.h"
-
 /**
  * _get_builtin_fn - Selects the correct function to perform the builtin.
  * @s: Command passed as an argument to the program.
@@ -18,6 +16,7 @@ void (*_get_builtin_fn(char *s))(data_t *data)
 		{"setenv", _builtin_set_env},
 		{"unsetenv", _builtin_unset_env},
 		{"exit", _builtin_exit},
+		{"cd", _builtin_cd},
 		{NULL, NULL}};
 
 	while (builtins[i].builtin_cmd != NULL)

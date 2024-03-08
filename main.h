@@ -43,6 +43,7 @@ typedef struct data
 	int exit_status;
 	char **environ;
 	char *prompt;
+	char *prev_dir;
 	Alias *alias_list;
 } data_t;
 
@@ -107,7 +108,7 @@ void _builtin_printenv(data_t *data);
 void _builtin_exit(data_t *data);
 void _builtin_set_env(data_t *data);
 void _builtin_unset_env(data_t *data);
-
+void _builtin_cd(data_t *data);
 /*STRING FUNCTIONS*/
 int _atoi(char *s);
 int _strcmp(char *s1, char *s2);
@@ -122,7 +123,9 @@ Alias *find_alias(data_t *data, const char *name);
 int _isdigit(int c);
 int _is_num(char *str);
 
-void handle_alias_definitions(data_t *data);
+void _builtin_cd(data_t *data);
+void update_pwd(char *new_dir);
+
 void substitute_aliases(data_t *data);
 
 #endif /* #ifndef _MAIN_H_ */
