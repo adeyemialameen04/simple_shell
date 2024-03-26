@@ -28,6 +28,7 @@ int _handle_file(char **argv, data_t *data)
 			data->cmd = lineptr;
 
 			_tokenize_command(data, " \n");
+			printf("Na me be argc %d\n", data->argc);
 			execute_cmd(data);
 
 			_free_cmds(data);

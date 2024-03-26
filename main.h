@@ -133,7 +133,6 @@ int _isdigit(int c);
 int _is_num(char *str);
 
 void _builtin_cd(data_t *data);
-void update_pwd(char *new_dir);
 
 void substitute_aliases(data_t *data);
 

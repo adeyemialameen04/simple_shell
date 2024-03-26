@@ -11,7 +11,6 @@ int _shell(int argc, char *argv[])
 	data_t data = initialize_data_struct();
 
 	if (argc > 1)
-
 		_handle_file(argv, &data);
 	else
 		shell_loop(&data);
