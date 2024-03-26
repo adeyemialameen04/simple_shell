@@ -6,8 +6,13 @@
 #define RESET_COLOR "\x1b[0m"
 #define YELLOW_COLOR "\x1b[33m"
 
-void _print_red(const char *text, int file_descriptor);
-
+/**
+ * _print_clr - Prints text in colour.
+ * @text: Text to be printed.
+ * @fd: file_descriptor its printing to.
+ * @clr: Colour to be printed in.
+ * Return: None.
+ */
 void _print_clr(char *text, int fd, char *clr)
 {
 	write(fd, clr, strlen(clr));
@@ -89,11 +94,4 @@ void _builtin_cd(data_t *data)
 		setenv("OLDPWD", getenv("PWD"), 1);
 		setenv("PWD", new_dir, 1);
 	}
-}
-
-void _print_red(const char *text, int file_descriptor)
-{
-	write(file_descriptor, RED_COLOR, 5);
-	write(file_descriptor, text, strlen(text));
-	write(file_descriptor, RESET_COLOR, 4);
 }

@@ -39,7 +39,6 @@ typedef struct Alias
  * @cmds_count: The count of each commands.
  * @exit_status: The status of each command.
  * @environ: The environment variables.
- * @prev_dir: To store the prev dir.
  * @prompt: My shell prompt.
  * @alias_list: The alias list.
  */
