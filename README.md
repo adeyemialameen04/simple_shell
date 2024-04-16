@@ -53,4 +53,4 @@ Push to the branch (git push origin feature/your_feature_name).
 Create a new pull request.
 
 ## License
-This project is licensed under the MIT License - see the [LICENSE]("https://github.com/adeyemialameen04/simple_shell/blob/main/LICENSE") file for details.
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/adeyemialameen04/simple_shell/blob/main/LICENSE) file for details.
