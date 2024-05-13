@@ -18,25 +18,23 @@ To build and run the simple shell, follow these steps:
 ```
 git clone https://github.com/adeyemialameen04/simple_shell.git
 ```
-
 ```
-gcc -Wall -Werror -Wextra -pedantic *.c -o shell
+cd simple_shell
 ```
-
 ```
 gcc -Wall -Werror -Wextra -pedantic *.c -o shell
 ```
 
 ## Usage
 Once the shell is running, you can enter commands as you would in a regular shell. Here are some examples:
-```
+```bash
 $ ls -l
 total 72
 -rw-r--r-- 1 user user  1971 Mar 15 10:36 builtin.c
 -rw-r--r-- 1 user user  2975 Mar 15 10:36 exec.c
 -rw-r--r-- 1 user user  1158 Mar 15 10:36 shell.h
 -rw-r--r-- 1 user user 20584 Mar 15 10:36 shell.c
-...
+...bash
 $ echo "Hello, world!"
 Hello, world!
 $ exit
@@ -46,10 +44,15 @@ $ exit
 Contributions are welcome! If you would like to contribute to the development of this project, please follow these steps:
 
 Fork the repository.
+
 Create a new branch (git checkout -b feature/your_feature_name).
+
 Make your changes.
+
 Commit your changes (git commit -am 'Add new feature').
+
 Push to the branch (git push origin feature/your_feature_name).
+
 Create a new pull request.
 
 ## License
